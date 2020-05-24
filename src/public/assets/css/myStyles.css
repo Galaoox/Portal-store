@@ -1,0 +1,40 @@
+.navbar-words {
+  position: relative;
+  color: #fff;
+  letter-spacing: 0;
+  font-size: 1.5rem;
+  line-height: 2;
+  padding-right: 2rem;
+  margin-right: 3.2rem;
+}
+
+.navbar-words a {
+  color: inherit;
+}
+
+.navbar-words a:hover {
+  color: #0e95d9;
+  text-decoration: none;
+}
+
+.navbar-words:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  display: block;
+  width: 1px;
+  height: 43px;
+  margin-top: -21.5px;
+  background-color: #0e95d9;
+}
+
+.icono-personalizado-header {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.icono-personalizado-header:hover {
+  color: #0e95d9;
+  text-decoration: none;
+}
