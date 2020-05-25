@@ -1,0 +1,40 @@
+<main class="main mt-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-last dashboard-content">
+                {{#if verFormulario}}
+
+                {{> usuario.form }}
+
+                {{/if}}
+
+
+                {{#if verPedidos}}
+
+                {{> usuario.pedidos }}
+
+                {{/if}}
+
+                {{#if verProductos}}
+
+                {{> usuario.productos }}
+
+                {{/if}}
+            </div><!-- End .col-lg-9 -->
+
+            <aside class="sidebar col-lg-3">
+                <div class="widget widget-dashboard">
+                    <h3 class="widget-title">Mi cuenta</h3>
+
+                    <ul class="list">
+                        <li><a href="/usuario/">Información de la cuenta</a></li>
+                        <li><a href="/usuario/pedidos">Mis pedidos</a></li>
+                        <li><a href="/usuario/productos">Mi productos</a></li>
+                    </ul>
+                </div><!-- End .widget -->
+            </aside><!-- End .col-lg-3 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+
+    <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->

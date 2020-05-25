@@ -1,0 +1,138 @@
+<main class="main">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-table-container">
+                    <table class="table table-cart">
+                        <thead>
+                            <tr>
+                                <th class="product-col">Producto</th>
+                                <th class="price-col">Precio</th>
+                                <th class="qty-col">Cant</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="product-row">
+                                <td class="product-col">
+                                    <figure class="product-image-container">
+                                        <a href="/productos/detalle/1" class="product-image">
+                                            <img src="/assets\images\products\product-4.jpg" alt="product">
+                                        </a>
+                                    </figure>
+                                    <h2 class="product-title">
+                                        <a href="/productos/detalle/1">Men Watch</a>
+                                    </h2>
+                                </td>
+                                <td>$17.90</td>
+                                <td>
+                                    <input class="text-center form-control" readonly value="1" type="text">
+                                </td>
+                                <td>$17.90</td>
+                            </tr>
+                            <tr class="product-action-row">
+                                <td colspan="4" class="clearfix">
+
+
+                                    <div class="float-right">
+
+                                        <a href="/carrito/remove" title="Eliminar producto" class="btn-remove"><span
+                                                class="sr-only">Remove</span></a>
+                                    </div><!-- End .float-right -->
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="clearfix">
+                                    <div class="float-left">
+                                        <a href="/productos" class="btn btn-outline-secondary">Seguir comprando</a>
+                                    </div><!-- End .float-left -->
+
+                                    <div class="float-right">
+                                        <a href="/carrito/clear"
+                                            class="btn btn-outline-secondary btn-clear-cart">Limpiar carrito</a>
+                                    </div><!-- End .float-right -->
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- End .cart-table-container -->
+
+
+            </div><!-- End .col-lg-8 -->
+
+            <div class="col-lg-4">
+                <div class="cart-summary">
+                    <h3>Resumen</h3>
+
+                    <h4>
+                        <a data-toggle="collapse" href="#total-estimate-section" class="collapsed" role="button"
+                            aria-expanded="false" aria-controls="total-estimate-section">Direccion de envio</a>
+                    </h4>
+
+                    <div class="collapse" id="total-estimate-section">
+                        <form action="#">
+                            <div class="form-group form-group-sm">
+                                <label>Pais</label>
+                                <div class="select-custom">
+                                    <select class="form-control form-control-sm">
+                                        <option value="USA">Colombia</option>
+                                    </select>
+                                </div><!-- End .select-custom -->
+                            </div><!-- End .form-group -->
+
+                            <div class="form-group form-group-sm">
+                                <label>Ciudad</label>
+                                <div class="select-custom">
+                                    <select class="form-control form-control-sm">
+                                        <option value="CA">California</option>
+                                    </select>
+                                </div><!-- End .select-custom -->
+                            </div><!-- End .form-group -->
+
+                            <div class="form-group form-group-sm">
+                                <label>Código postal</label>
+                                <input type="text" class="form-control form-control-sm">
+                            </div><!-- End .form-group -->
+
+                            <div class="form-group form-group-sm">
+                                <label>Dirección</label>
+                                <input type="text" class="form-control form-control-sm">
+                            </div><!-- End .form-group -->
+
+
+                        </form>
+                    </div><!-- End #total-estimate-section -->
+
+                    <table class="table table-totals">
+                        <tbody>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td>$17.90</td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Total</td>
+                                <td>$17.90</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="checkout-methods">
+                        <a href="/pedidos/create" class="btn btn-block btn-sm btn-primary">Procesar compra</a>
+                    </div><!-- End .checkout-methods -->
+                </div><!-- End .cart-summary -->
+            </div><!-- End .col-lg-4 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+
+    <div class="mb-6"></div><!-- margin -->
+</main><!-- End .main -->
