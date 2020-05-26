@@ -1,48 +1,40 @@
-<h1>Categorias</h1>
 <div class="container-fluid">
     <div class="row m-t-30">
         <div class="col-md-12">
             <!-- DATA TABLE-->
             <div class="table-responsive m-b-40">
-                <table class="table table-borderless table-data3" id="PortalStoreDatatable">
+                <button class="btn btn-success float-right " data-toggle="modal"
+                    data-target="#nuevoCategoria">Nuevo</button>
+
+                <table class="table table-borderless display table-data3" id="PortalStoreDatatable">
                     <thead>
                         <tr>
-                            <th>date</th>
-                            <th>type</th>
-                            <th>description</th>
-                            <th>status</th>
-                            <th>price</th>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th class="text-center">
+                            </th>
+                            <th class="text-center">
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
+                        {{#each categorias }}
                         <tr>
-                            <td>2018-09-29 05:57</td>
-                            <td>Mobile</td>
-                            <td>iPhone X 64Gb Grey</td>
-                            <td class="process">Processed</td>
-                            <td>$999.00</td>
+                            <td>{{ id }}</td>
+                            <td>{{ nombre }}</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" data-toggle="modal"
+                                    data-target="#editarCategoria{{ id }}">Modificar</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                    data-target="#eliminarCategoria{{ id }}">Eliminar</button>
+                            </td>
+
                         </tr>
-                        <tr>
-                            <td>2018-09-29 05:57</td>
-                            <td>albertivo</td>
-                            <td>iPhone X 64Gb Grey</td>
-                            <td class="process">Processed</td>
-                            <td>$999.00</td>
-                        </tr>
-                        <tr>
-                            <td>2018-09-29 05:57</td>
-                            <td>y</td>
-                            <td>iPhone X 64Gb Grey</td>
-                            <td class="process">Processed</td>
-                            <td>$999.00</td>
-                        </tr>
-                        <tr>
-                            <td>2018-09-29 05:57</td>
-                            <td>x</td>
-                            <td>iPhone X 64Gb Grey</td>
-                            <td class="process">Processed</td>
-                            <td>$999.00</td>
-                        </tr>
+                        {{/each}}
+
+
                     </tbody>
                 </table>
             </div>

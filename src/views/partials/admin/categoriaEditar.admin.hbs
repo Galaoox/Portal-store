@@ -1,0 +1,36 @@
+{{#each categorias }}
+<!-- modal medium -->
+<div class="modal fade" id="editarCategoria{{ id }}" tabindex="-1" role="dialog"
+    aria-labelledby="editarCategoria{{ id }}Label" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarCategoria{{ id }}">Editar categoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/categorias/edit/{{ id }}" method="POST">
+
+                <div class="modal-body row">
+
+                    <div class="form-group col-12 ">
+                        <label for="nombre" class=" form-control-label">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" placeholder="nombre" value="{{ nombre }}"
+                            class="form-control" autofocus required>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!-- end modal medium -->
+
+{{/each  }}

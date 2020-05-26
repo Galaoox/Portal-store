@@ -35,6 +35,9 @@
     <!-- DATATABLES CSS-->
     <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css" />
 
+    <link rel="stylesheet" type="text/css" href="/admin/css/myStyles.css" />
+
+
 
 </head>
 
@@ -157,6 +160,7 @@
         </header>
         <!-- END HEADER MOBILE-->
 
+
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -206,6 +210,14 @@
         </aside>
         <!-- END MENU SIDEBAR-->
 
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <h1>{{ titulo }}</h1>
+                </div>
+            </div>
+        </header>
+
         <!-- PAGE CONTAINER-->
         <div class="page-container">
 
@@ -214,8 +226,48 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     {{{ body }}}
+
                 </div>
             </div>
+
+            {{#if VerUsuario}}
+
+            {{> usuarioNuevo.admin }}
+
+            {{> usuarioEditar.admin }}
+
+            {{> usuarioEliminar.admin }}
+
+            {{/if}}
+
+            {{#if VerProductos}}
+
+            {{> productoNuevo.admin }}
+
+            {{> productoEditar.admin }}
+
+            {{> productoEliminar.admin }}
+
+
+            {{/if}}
+
+            {{#if VerCategorias}}
+
+            {{> categoriaNuevo.admin }}
+
+            {{> categoriaEditar.admin }}
+
+            {{> categoriaEliminar.admin }}
+
+
+            {{/if}}
+
+
+            {{#if VerSolicitudes}}
+
+            modal solicitudes
+
+            {{/if}}
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
         </div>
@@ -249,6 +301,10 @@
     <!-- DATATBLES JS-->
 
     <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
+
+    <!-- ALERTS 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>--->
+
     <!-- MIS DATATBLES JS-->
 
     <script type="text/javascript" src="/myDatatables/index.js"></script>

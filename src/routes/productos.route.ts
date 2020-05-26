@@ -1,20 +1,30 @@
-import { Router, Response, Request } from 'express';
+import { Router, Request, Response } from 'express';
+import ProductoController from '../controllers/producto.controller';
 
-const router = Router();
+class ProductoRouter {
+    public router: Router = Router();
+
+    constructor() {
+        this.config();
+    }
+
+    config(): void {
+
+        this.router.post('/store', ProductoController.store);
 
 
-router.get('/', (req: Request, res: Response) => {
-    // asi recibire los filtros
-    console.log(req.query.busqueda);
-    console.log(req.query.categoria);
-    res.render('productos/lista');
-});
+        this.router.post('/edit/:id', ProductoController.edit);
 
 
+        this.router.get('/delete/:id', ProductoController.delete);
 
-router.get('/detalle/:producto', (req: Request, res: Response) => {
-    console.log(req.params.producto);
-    res.render('productos/detalle');
-});
+        this.router.get('/', ProductoController.index);
 
-export default router;
+        this.router.get('/detalle/:producto', ProductoController.detalle);
+
+    }
+
+}
+
+const productoRouter = new ProductoRouter();
+export default productoRouter.router;

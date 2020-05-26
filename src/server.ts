@@ -1,8 +1,9 @@
-import express, { Application, Router } from 'express';
+import express from 'express';
 import morgan from 'morgan';
-import cors from 'cors';
-import exphbs from 'express-handlebars'
-import path from 'path'
+import exphbs from 'express-handlebars';
+import path from 'path';
+
+
 import IndexRoutes from './routes/index.route';
 import AuthRoutes from './routes/auth.route';
 import ProductosRoutes from './routes/productos.route';
@@ -10,19 +11,21 @@ import CarritoRoutes from './routes/carrito.route';
 import PedidosRoutes from './routes/pedidos.route';
 import UsuarioRoutes from './routes/usuario.route';
 import AdminRoutes from './routes/admin.route';
-
+import CategoriasRoutes from './routes/categorias.route';
 
 
 
 
 class Server {
-    public app: Application;
+    public app: express.Application;
     private port: Number = 3000;
     constructor() {
         this.app = express();
-        this.middlewares();
-        this.routes();
         this.config();
+        this.middlewares();
+
+        this.routes();
+
     }
 
 
@@ -39,19 +42,23 @@ class Server {
 
             ],
             defaultLayout: 'main',
-            extname: '.hbs'
+            extname: '.hbs',
+            helpers: require('./lib/handlebars')
 
         }));
         this.app.set('view engine', '.hbs');
     }
 
     middlewares(): void {
+
+        this.app.use(morgan('dev'));
+        this.app.use(express.urlencoded({ extended: false }));
         this.app.use(express.json());
-        //this.app.use(morgan('dev'));
-        this.app.use(cors());
+
     }
 
-    routes(): void {
+    routes() {
+
         this.app.use('/', IndexRoutes);
         this.app.use('/auth', AuthRoutes);
         this.app.use('/productos', ProductosRoutes);
@@ -59,6 +66,8 @@ class Server {
         this.app.use('/pedidos', PedidosRoutes);
         this.app.use('/usuario', UsuarioRoutes);
         this.app.use('/admin', AdminRoutes);
+        this.app.use('/categorias', CategoriasRoutes);
+
 
 
         this.app.use(express.static(path.join(__dirname, 'public')));

@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="row m-t-30">
+        <div class="col-md-12">
+            <!-- DATA TABLE-->
+            <div class="table-responsive m-b-40">
+                <button class="btn btn-success float-right " data-toggle="modal"
+                    data-target="#nuevoProducto">Nuevo</button>
+
+                <table class="table table-borderless display table-data3" id="PortalStoreDatatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Vendedor</th>
+
+                            <th>Categoria</th>
+
+
+                            <th class="text-center">
+                            </th>
+                            <th class="text-center">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each productos }}
+                        <tr>
+                            <td>{{ id }}</td>
+                            <td>{{ nombre }}</td>
+                            <td>{{ fecha }}</td>
+                            <td>{{ precio }}</td>
+                            <td>{{ cantidad }}</td>
+                            <td>{{ vendedor }}</td>
+                            <td>{{ categoria }}</td>
+                            <td>
+                                <button class="btn btn-warning bn-sm" data-toggle="modal"
+                                    data-target="#editarProducto{{ id }}">Modificar</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                    data-target="#eliminarProducto{{ id }}">Eliminar</button>
+                            </td>
+
+                        </tr>
+                        {{/each}}
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- END DATA TABLE-->
+        </div>
+    </div>
+
+</div>

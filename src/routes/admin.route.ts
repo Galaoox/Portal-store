@@ -1,32 +1,34 @@
-import { Router, Response, Request } from 'express';
+import { Router } from 'express';
+import AdminController from '../controllers/admin.controller';
 
-const router = Router();
+class UsersRouter {
+    public router: Router = Router();
 
-router.get('/', function (req, res) {
-    res.render('admin/', { title: 'my other page', layout: 'admin', titulo: "Inicio" });
+    constructor() {
+        this.config();
+    }
 
-});
+    config(): void {
+        // Dirigir vista inicio
+        this.router.get('/', AdminController.index);
+        // ruta que dirige a la vista del datatable de productos
+        this.router.get('/productos', AdminController.productos);
+        // ruta que dirige a la vista del datatable de solicitudes
+        this.router.get('/solicitudes', AdminController.solicitudes);
 
-router.get('/productos', function (req, res) {
-    res.render('admin/productos/productos', { layout: 'admin', titulo: "Productos" });
-});
+        // ruta que dirige a la vista del datatable de categorias
+        this.router.get('/categorias', AdminController.categorias);
 
-router.get('/solicitudes', function (req, res) {
-    res.render('admin/productos/solicitudes', { layout: 'admin', titulo: "Solicitudes" });
-});
+        // ruta que dirige a la vista de reportes
+        this.router.get('/reportes', AdminController.reportes);
 
-router.get('/reportes', function (req, res) {
-    res.render('admin/reportes', { layout: 'admin', titulo: "Reportes" });
-});
-
-
-router.get('/categorias', function (req, res) {
-    res.render('admin/categorias', { layout: 'admin', titulo: "Categorias" });
-});
+        // ruta que dirige a la vista del datatable de usuarios
+        this.router.get('/usuarios', AdminController.usuarios);
 
 
-router.get('/usuarios', function (req, res) {
-    res.render('admin/usuarios', { layout: 'admin', titulo: "Usuarios" });
-});
+    }
 
-export default router;
+}
+
+const usersRouter = new UsersRouter();
+export default usersRouter.router;
