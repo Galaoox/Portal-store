@@ -1,3 +1,6 @@
+import { BorderWidth, Chart, Point, ChartColor } from 'chart.js';
+
+
 const helpers: any = {};
 
 
@@ -19,5 +22,7 @@ helpers.colorStatus = (idEstado: any) => {
   }
   return estado;
 };
+
+
 
 module.exports = helpers;

@@ -21,6 +21,7 @@ class UsersRouter {
 
         // ruta que dirige a la vista de reportes
         this.router.get('/reportes', AdminController.reportes);
+        this.router.get('/reportesInfo', AdminController.reportesInfo);
 
         // ruta que dirige a la vista del datatable de usuarios
         this.router.get('/usuarios', AdminController.usuarios);

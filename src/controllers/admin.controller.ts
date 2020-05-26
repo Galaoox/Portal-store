@@ -63,6 +63,11 @@ class AdminController {
         res.render('admin/reportes', { layout: 'admin', titulo: "Reportes" });
     }
 
+    public async  reportesInfo(req: Request, res: Response) {
+        const datos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        res.json(datos);
+    }
+
     /** Metodo encargado de dirigir al usuario a la vista de solicitudes
  * 
  * @param req 
