@@ -5,7 +5,7 @@ class ProductoController {
 
     public async store(req: Request, res: Response) {
         console.log(req.body);
-        await pool.query('INSERT INTO productos SET ?', [req.body]);
+        await pool.query('INSERT INTO productos SET fecha = NOW() , ?', [req.body]);
         res.redirect('back');
     }
 
@@ -21,6 +21,14 @@ class ProductoController {
         const { id } = req.params;
         await pool.query('UPDATE productos set fecha_eliminado = NOW() WHERE id = ?', [id]);
 
+        res.redirect('back');
+
+    }
+
+
+    public async estado(req: Request, res: Response) {
+        const { id, id_estado } = req.params;
+        await pool.query('UPDATE productos set id_estado = ? WHERE id = ?', [id_estado, id]);
         res.redirect('back');
 
     }

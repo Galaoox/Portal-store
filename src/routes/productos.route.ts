@@ -22,6 +22,9 @@ class ProductoRouter {
 
         this.router.get('/detalle/:producto', ProductoController.detalle);
 
+        this.router.get('/estado/:id_estado/:id', ProductoController.estado);
+
+
     }
 
 }

@@ -28,8 +28,6 @@ class AdminController {
         left join categorias cat on  cat.id = pro.id_categoria 
         where pro.id_estado = 1 and pro.fecha_eliminado is null `);
         const categorias = await pool.query(`select * from categorias where fecha_eliminado IS NULL`);
-        console.log(categorias);
-        console.log(productos);
         res.render('admin/productos/productos', { layout: 'admin', VerProductos: true, titulo: "Productos", productos: productos, categorias: categorias });
 
     }
@@ -70,9 +68,18 @@ class AdminController {
  * @param req 
  * @param res 
  */
-    public solicitudes(req: Request, res: Response) {
+    public async  solicitudes(req: Request, res: Response) {
+        const solicitudes = await pool.query(`
+        select pro.id, pro.nombre, DATE_FORMAT(pro.fecha , '%Y/%m/%d') as fecha, pro.descripcion, pro.precio, pro.cantidad, pro.img,
+        CONCAT(usu.nombres ,' ', usu.apellidos) as vendedor, cat.nombre as categoria, pro.id_estado, espro.nombre as estado
+        from productos pro 
+        left join usuarios usu on  usu.id = pro.id_usuario 
+        left join categorias cat on  cat.id = pro.id_categoria
+        left join estados_productos espro on espro.id = pro.id_estado
+        where  pro.fecha_eliminado is null 
+        `);
 
-        res.render('admin/productos/solicitudes', { layout: 'admin', titulo: "Solicitudes" });
+        res.render('admin/productos/solicitudes', { layout: 'admin', titulo: "Solicitudes", VerSolicitudes: true, solicitudes });
 
     }
 
