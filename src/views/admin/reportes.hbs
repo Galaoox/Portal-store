@@ -1,87 +1,116 @@
-<h1 class="mb-2">Reportes</h1>
-<input type="text" id="reportesDatos">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script type="text/javascript" src="/js/Chart.min.js"></script>
+
+
 <div class="row">
 
-    <div class="col-lg-6">
-        <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Pruebas</h3>
-                <canvas id="myChart" width="400" height="400"></canvas>
 
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div class="au-card m-b-30">
             <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Yearly Sales</h3>
-                <canvas id="sales-chart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Team Commits</h3>
-                <canvas id="team-chart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Bar chart</h3>
-                <canvas id="barChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Rader chart</h3>
-                <canvas id="radarChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Line Chart</h3>
-                <canvas id="lineChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Doughut Chart</h3>
-                <canvas id="doughutChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Pie Chart</h3>
-                <canvas id="pieChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Polar Chart</h3>
-                <canvas id="polarChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">Single Bar Chart</h3>
-                <canvas id="singelBarChart"></canvas>
+                <h3 class="title-2 m-b-40">30 dìas vs valor total venta</h3>
+                <canvas id="ventas-dias"></canvas>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    fetch("http://localhost:3000/admin/reportesInfo")
+        .then((response) => response.json())
+        .then((json) => generarGrafica(json));
+
+    function generarGrafica(datos) {
+        try {
+            console.log(datos);
+            //Team chart
+            var ctx = document.getElementById("ventas-dias").getContext('2d');
+            if (ctx) {
+                var myChart = new Chart(ctx, {
+                    type: "line",
+                    data: {
+                        labels: datos.dias,
+                        type: "line",
+                        defaultFontFamily: "Poppins",
+                        datasets: [
+                            {
+                                data: datos.registros,
+                                label: "Total ventas",
+                                backgroundColor: "rgba(0,103,255,.15)",
+                                borderColor: "rgba(0,103,255,0.5)",
+                                borderWidth: 3.5,
+                                pointStyle: "circle",
+                                pointRadius: 5,
+                                pointBorderColor: "transparent",
+                                pointBackgroundColor: "rgba(0,103,255,0.5)",
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        tooltips: {
+                            mode: "index",
+                            titleFontSize: 12,
+                            titleFontColor: "#000",
+                            bodyFontColor: "#000",
+                            backgroundColor: "#fff",
+                            titleFontFamily: "Poppins",
+                            bodyFontFamily: "Poppins",
+                            cornerRadius: 3,
+                            intersect: false,
+                        },
+                        legend: {
+                            display: false,
+                            position: "top",
+                            labels: {
+                                usePointStyle: true,
+                                fontFamily: "Poppins",
+                            },
+                        },
+                        scales: {
+                            xAxes: [
+                                {
+                                    display: true,
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false,
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: "Dias",
+                                    },
+                                    ticks: {
+                                        fontFamily: "Poppins",
+                                    },
+                                },
+                            ],
+                            yAxes: [
+                                {
+                                    display: true,
+                                    gridLines: {
+                                        display: true,
+                                        drawBorder: false,
+                                    },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: "Valor",
+                                        fontFamily: "Poppins",
+                                    },
+                                    ticks: {
+                                        fontFamily: "Poppins",
+                                    },
+                                },
+                            ],
+                        },
+                        title: {
+                            display: false,
+                        },
+                    },
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+</script>

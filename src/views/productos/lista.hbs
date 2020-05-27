@@ -1,11 +1,11 @@
 <main class="main">
     <div class="banner banner-cat" style="background-image: url('/assets/images/banners/banner-top.jpg');">
         <div class="banner-content container">
-            <h2 class="banner-subtitle">check out over <span>200+</span></h2>
+            <h2 class="banner-subtitle">Echa un vistazo a <span>200+</span></h2>
             <h1 class="banner-title">
-                INCREDIBLE deals
+                Ofertas increíbles
             </h1>
-            <a href="#" class="btn btn-dark">Shop Now</a>
+            <a href="#" class="btn btn-dark">Compra ahora</a>
         </div><!-- End .banner-content -->
     </div><!-- End .banner -->
 
@@ -14,14 +14,22 @@
     <div class="container mt-2">
         <nav class="toolbox horizontal-filter-personalizado filter-sorts ">
 
+            <form class="form-inline" action="/productos/" method="get">
+                <input type="search" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar...">
+                <div class="toolbox-item ">
+                    <div class="select-custom">
+                        <select name="categoria" class="form-control">
+                            {{#each categorias}}
+                            <option value="{{ id }}">
+                                {{ nombre }}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div><!-- End .select-custom -->
+                </div><!-- End .toolbox-item -->
+                <button class="btn" type="submit"><i class="icon-magnifier"></i></button>
+            </form>
 
-            <div class="toolbox-item ">
-                <div class="select-custom">
-                    <select name="orderby" class="form-control">
-                        <option value="menu_order" selected="selected">Categorias</option>
-                    </select>
-                </div><!-- End .select-custom -->
-            </div><!-- End .toolbox-item -->
 
 
         </nav>
@@ -29,64 +37,50 @@
             <div class="col-lg-12">
 
                 <div class="product-intro row row-sm">
-                    <div class="col-12 col-sm-12 product-default left-details product-list mb-4">
-                        <figure>
-                            <a href="/productos/detalle/1">
-                                <img src="/assets/images/products/product-1.jpg">
-                            </a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="category-list">
-                                <span class="">Categoria</span>
 
-                            </div>
-                            <h2 class="product-title">
-                                <a href="/productos/detalle/1">Nombre producto</a>
-                            </h2>
+                    <div class="home-featured-products owl-carousel owl-theme owl-dots-top">
+                        {{#each productos}}
+                        <div class="product-default">
+                            <figure>
+                                <a href="/productos/detalle/{{id}}">
+                                    <img src="https://picsum.photos/id/{{id}}/900/500">
+                                </a>
+                            </figure>
+                            <div class="product-details">
+                                <div class="category-list">
+                                    <span class="">{{categoria}}</span>
 
-                            <p class="product-description">Pellentesque habitant morbi tristique senectus et netus et
-                                malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies
-                                eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                            <div class="price-box">
-                                <span class="product-price">$15.00</span>
-                            </div><!-- End .price-box -->
-                            <div class="product-action">
-                                <form class="form-inline" action="/carrito/add" method="get">
-                                    <input type="hidden" name="producto" value="1" type="text">
-                                    <button class="paction add-cart" title="Añadir al carrito" type="submit">
-                                        <span>Añadir al carrito</span>
-                                    </button>
-                                </form>
+                                </div>
+                                <h2 class="product-title">
+                                    <a href="/productos/detalle/{{id}}">{{nombre}}</a>
+                                </h2>
 
-                            </div>
-                        </div><!-- End .product-details -->
-                    </div>
+                                <p class="product-description">
+                                    {{descripcion}}
+                                </p>
+                                <div class="price-box">
+                                    <span class="product-price">${{precio}}</span>
+                                </div><!-- End .price-box -->
+                                <div class="product-action">
+                                    <form class="form-inline" action="/carrito/add" method="get">
+                                        <input type="hidden" name="producto" value="{{id}}" type="text">
+                                        <input type="hidden" name="cantidad" value="1" type="text">
+
+                                        <button class="paction add-cart" title="Añadir al carrito" type="submit">
+                                            <span>Añadir al carrito</span>
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div><!-- End .product-details -->
+                        </div>
+                        {{/each }}
+
+
+                    </div><!-- End .featured-proucts -->
 
                 </div>
 
-                <nav class="toolbox toolbox-pagination">
-                    <div class="toolbox-item toolbox-show">
-                        <label>Showing 1–9 of 60 results</label>
-                    </div><!-- End .toolbox-item -->
-
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link page-link-btn" href="#"><i class="icon-angle-left"></i></a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><span>...</span></li>
-                        <li class="page-item"><a class="page-link" href="#">15</a></li>
-                        <li class="page-item">
-                            <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
             </div><!-- End .col-lg-12 -->
 
 

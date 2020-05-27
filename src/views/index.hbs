@@ -51,22 +51,25 @@
                 <h2 class="carousel-title">Productos Destacados</h2>
 
                 <div class="home-featured-products owl-carousel owl-theme owl-dots-top">
+                    {{#each productos}}
                     <div class="product-default">
                         <figure>
-                            <a href="/productos/detalle/1">
-                                <img src="assets\images\products\home-featured-1.jpg">
+                            <a href="/productos/detalle/{{id}}">
+                                <img src="https://picsum.photos/id/{{id}}/900/500">
                             </a>
                         </figure>
                         <div class="product-details">
                             <h2 class="product-title">
-                                <a href="/productos/detalle/1">Nombre corto del producto</a>
+                                <a href="/productos/detalle/{{id}}">{{nombre}}</a>
                             </h2>
                             <div class="price-box">
-                                <span class="product-price">$9.00</span>
+                                <span class="product-price">${{precio}}</span>
                             </div><!-- End .price-box -->
 
                         </div><!-- End .product-details -->
                     </div>
+                    {{/each }}
+
 
                 </div><!-- End .featured-proucts -->
 

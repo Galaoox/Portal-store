@@ -25,7 +25,7 @@
         };
         (function (d) {
             var wf = d.createElement('script'), s = d.scripts[0];
-            wf.src = '/assets/js/webfont.js';
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
             wf.async = true;
             s.parentNode.insertBefore(wf, s);
         })(document);
@@ -47,7 +47,7 @@
     <div class="page-wrapper">
         {{> navbar }}
 
-
+        {{> mensaje }}
         {{{ body }}}
 
     </div>
@@ -55,6 +55,8 @@
 
     {{> mobileMenu }}
     {{> loginModal }}
+    {{> registerModal }}
+
     <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
     <!-- Plugins JS File -->
@@ -62,8 +64,16 @@
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/plugins.min.js"></script>
 
+    <!-- DATATBLES JS-->
+
+    <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
+
     <!-- Main JS File -->
     <script src="/assets/js/main.min.js"></script>
+
+    <!-- MIS DATATBLES JS-->
+
+    <script type="text/javascript" src="/myDatatables/index.js"></script>
 </body>
 
 </html>

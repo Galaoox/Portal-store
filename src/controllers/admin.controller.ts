@@ -8,8 +8,19 @@ class AdminController {
      * @param req 
      * @param res 
      */
-    public index(req: Request, res: Response) {
-        res.render('admin/', { title: 'my other page', layout: 'admin', titulo: "Inicio" });
+    public async  index(req: Request, res: Response) {
+        const usuarios = await pool.query('select count(*) as cantidad from usuarios where fecha_eliminado IS NULL');
+        const productos = await pool.query('select count(*) as cantidad from productos where fecha_eliminado IS NULL and id_estado = 1');
+        const pedidos = await pool.query('select count(*) as cantidad from pedidos where fecha_eliminado IS NULL ');
+        const ganancias = await pool.query('select sum(php.cantidad * precio ) as valor from pedidos_has_productos php')
+        const datos = {
+            usuarios: usuarios[0].cantidad,
+            productos: productos[0].cantidad,
+            pedidos: pedidos[0].cantidad,
+            ganancias: ganancias[0].valor
+        };
+
+        res.render('admin/', { title: 'my other page', layout: 'admin', titulo: "Inicio", datos });
 
     }
 
@@ -59,14 +70,12 @@ class AdminController {
      * @param req 
      * @param res 
      */
-    public reportes(req: Request, res: Response) {
-        res.render('admin/reportes', { layout: 'admin', titulo: "Reportes" });
+    public async reportes(req: Request, res: Response) {
+
+        res.render('admin/reportes', { layout: 'admin', titulo: "Reportes", });
     }
 
-    public async  reportesInfo(req: Request, res: Response) {
-        const datos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        res.json(datos);
-    }
+
 
     /** Metodo encargado de dirigir al usuario a la vista de solicitudes
  * 
@@ -88,8 +97,37 @@ class AdminController {
 
     }
 
+    /**
+     * Reportes info metodo encargado de retornar la informacion usada en el reporte de administracion
+     * @param req 
+     * @param res 
+     */
+    public async  reportesInfo(req: Request, res: Response) {
+
+        const dias = [];
+        const registros: any = [];
+        const consultaRegistros = await pool.query(`
+        select day(p2.fecha_creacion) as dia , SUM((php.precio * php.cantidad)) as total from pedidos p2 
+        left join pedidos_has_productos php on php.id_pedido = p2.id 
+        where month(p2.fecha_creacion) = month(now() )
+                        GROUP BY dia
+                ORDER BY dia asc
+        `);
+        const consultaDias = await pool.query('select day(LAST_DAY(NOW())) as dias')
+        for (let index = 1; index <= consultaDias[0].dias; index++) {
+            dias.push(String(index));
+            const filtro = consultaRegistros.find((registro: any) => registro.dia == index);
+            registros.push(filtro && filtro.total ? filtro.total : 0);
+        }
 
 
+
+        const datos = {
+            dias: dias,
+            registros: registros
+        }
+        res.json(datos);
+    }
 
 
 }

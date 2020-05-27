@@ -4,46 +4,25 @@ import pool from '../database';
 class CategoriaController {
 
     public async store(req: Request, res: Response) {
-        console.log(req.body);
-        await pool.query('INSERT INTO categorias SET ?', [req.body],
-            (error, results, fields) => {
-                if (error) {
-                    console.log(error);
-                    res.redirect('back');
-                }
-                if (results) {
-                    res.redirect('back');
-                }
-            });
+        await pool.query('INSERT INTO categorias SET ?', [req.body]);
+        req.flash('success', 'Categoria creada exitosamente');
+
+        res.redirect('back');
     }
 
     public async edit(req: Request, res: Response) {
         const { id } = req.params;
-        await pool.query('UPDATE categorias set ? WHERE id = ?', [req.body, id],
-            (error, results, fields) => {
-                if (error) {
-                    console.log(error);
-                    res.redirect('back');
-                }
-                if (results) {
-                    res.redirect('back');
-                }
-            });
+        await pool.query('UPDATE categorias set ? WHERE id = ?', [req.body, id]);
+        req.flash('success', 'Categoria editada exitosamente');
+        res.redirect('back');
     }
 
 
     public async delete(req: Request, res: Response) {
         const { id } = req.params;
-        await pool.query('UPDATE categorias set fecha_eliminado = NOW() WHERE id = ?', [id],
-            (error, results, fields) => {
-                if (error) {
-                    console.log(error);
-                    res.redirect('back');
-                }
-                if (results) {
-                    res.redirect('back');
-                }
-            });
+        await pool.query('UPDATE categorias set fecha_eliminado = NOW() WHERE id = ?', [id]);
+        req.flash('success', 'Categoria eliminada exitosamente');
+        res.redirect('back');
     }
 
 

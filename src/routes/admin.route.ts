@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import AdminController from '../controllers/admin.controller';
-
+import auth from '../lib/auth';
 class UsersRouter {
     public router: Router = Router();
 
@@ -10,21 +10,22 @@ class UsersRouter {
 
     config(): void {
         // Dirigir vista inicio
-        this.router.get('/', AdminController.index);
+        this.router.get('/', auth.isLoggedInAdmin, AdminController.index);
         // ruta que dirige a la vista del datatable de productos
-        this.router.get('/productos', AdminController.productos);
+        this.router.get('/productos', auth.isLoggedInAdmin, AdminController.productos);
         // ruta que dirige a la vista del datatable de solicitudes
-        this.router.get('/solicitudes', AdminController.solicitudes);
+        this.router.get('/solicitudes', auth.isLoggedInAdmin, AdminController.solicitudes);
 
         // ruta que dirige a la vista del datatable de categorias
-        this.router.get('/categorias', AdminController.categorias);
+        this.router.get('/categorias', auth.isLoggedInAdmin, AdminController.categorias);
 
         // ruta que dirige a la vista de reportes
-        this.router.get('/reportes', AdminController.reportes);
-        this.router.get('/reportesInfo', AdminController.reportesInfo);
+        this.router.get('/reportes', auth.isLoggedInAdmin, AdminController.reportes);
+
+        this.router.get('/reportesInfo', auth.isLoggedInAdmin, AdminController.reportesInfo);
 
         // ruta que dirige a la vista del datatable de usuarios
-        this.router.get('/usuarios', AdminController.usuarios);
+        this.router.get('/usuarios', auth.isLoggedInAdmin, AdminController.usuarios);
 
 
     }

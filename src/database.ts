@@ -1,12 +1,8 @@
 import { createPool, Pool } from 'mysql';
 import { promisify } from 'util';
-const pool: any = createPool({
-	database: "portal",
-	host: "localhost",
-	port: 3306,
-	user: "root",
-	password: "",
-});
+import keys from './keys';
+
+const pool: any = createPool(keys.database);
 
 
 

@@ -2,41 +2,29 @@
 
 <form action="#">
     <div class="row">
-        <div class="col-sm-11">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group required-field">
-                        <label for="acc-name">First Name</label>
-                        <input type="text" class="form-control" id="acc-name" name="acc-name" required="">
-                    </div><!-- End .form-group -->
-                </div><!-- End .col-md-4 -->
+        <div class="form-group col-12 col-md-6">
+            <label for="nombres" class=" form-control-label">Nombres <span class="required">*</span></label>
+            <input type="text" name="nombres" id="nombres" placeholder="Nombres" value="{{user.nombres}}"
+                class="form-control form-wide mb-2 " autofocus required>
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label for="apellidos" class=" form-control-label">Apellidos <span class="required">*</span></label>
+            <input type="text" name="apellidos" id="apellidos" value="{{user.apellidos}}" placeholder="Apellidos"
+                class="form-control form-wide mb-2" required>
+        </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="acc-mname">First Name</label>
-                        <input type="text" class="form-control" id="acc-mname" name="acc-mname">
-                    </div><!-- End .form-group -->
-                </div><!-- End .col-md-4 -->
-
-                <div class="col-md-4">
-                    <div class="form-group required-field">
-                        <label for="acc-lastname">Last Name</label>
-                        <input type="text" class="form-control" id="acc-lastname" name="acc-lastname" required="">
-                    </div><!-- End .form-group -->
-                </div><!-- End .col-md-4 -->
-            </div><!-- End .row -->
-        </div><!-- End .col-sm-11 -->
+        <div class="form-group col-12 col-md-6">
+            <label for="email" class=" form-control-label">Correo electronico <span class="required">*</span></label>
+            <input type="email" name="email" id="email" value="{{user.email}}" placeholder="Correo electronico"
+                class="form-control form-wide mb-2" required>
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label for="password" class=" form-control-label">Contraseña <span class="required">*</span></label>
+            <input type="password" name="password" id="password" placeholder="Contraseña"
+                class="form-control form-wide mb-2" required>
+        </div>
     </div><!-- End .row -->
 
-    <div class="form-group required-field">
-        <label for="acc-email">Email</label>
-        <input type="email" class="form-control" id="acc-email" name="acc-email" required="">
-    </div><!-- End .form-group -->
-
-    <div class="form-group required-field">
-        <label for="acc-password">Password</label>
-        <input type="password" class="form-control" id="acc-password" name="acc-password" required="">
-    </div><!-- End .form-group -->
 
     <div class="mb-2"></div><!-- margin -->
 

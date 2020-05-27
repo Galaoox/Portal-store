@@ -1,47 +1,23 @@
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body add-cart-box text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h2 class="title mb-2">Iniciar sesión</h2>
 
-                            <form action="/auth/login/" method="POST" class="mb-1">
-                                <label for="login-email">Correo electrónico <span class="required">*</span></label>
-                                <input type="email" name="email" placeholder="Correo electrónico"
-                                    class="form-input form-wide mb-2" id="login-email" required="">
+            <div class="modal-body">
+                <h2 class="title mb-2">Iniciar sesión</h2>
 
-                                <label for="login-password">Contraseña <span class="required">*</span></label>
-                                <input type="password" name="password" placeholder="Contraseña"
-                                    class="form-input form-wide mb-2" id="login-password" required="">
+                <form action="/auth/login/" method="POST" class="mb-1">
+                    <label for="login-email">Correo electrónico <span class="required">*</span></label>
+                    <input type="email" name="email" placeholder="Correo electrónico" class="form-input form-wide mb-2"
+                        id="login-email" required="">
 
-                                <div class="form-footer">
-                                    <button type="submit" class="btn btn-primary btn-md">INICIAR SESIÓN</button>
-                                </div><!-- End .form-footer -->
-                            </form>
-                        </div><!-- End .col-md-6 -->
+                    <label for="login-password">Contraseña <span class="required">*</span></label>
+                    <input type="password" name="password" placeholder="Contraseña" class="form-input form-wide mb-2"
+                        id="login-password" required="">
 
-                        <div class="col-md-6">
-                            <h2 class="title mb-2">Registrarse</h2>
-
-                            <form action="/auth/register/" method="POST">
-                                <label for="register-email">Correo electrónico <span class="required">*</span></label>
-                                <input type="email" name="email" placeholder="Correo electrónico"
-                                    class="form-input form-wide mb-2" id="register-email" required="">
-
-                                <label for="register-password">Contraseña <span class="required">*</span></label>
-                                <input type="password" name="password" placeholder="Contraseña"
-                                    class="form-input form-wide mb-2" id="register-password" required="">
-
-                                <div class="form-footer">
-                                    <button type="submit" class="btn btn-primary btn-md">Registrarse</button>
-
-                                </div><!-- End .form-footer -->
-                            </form>
-                        </div><!-- End .col-md-6 -->
-                    </div><!-- End .row -->
-                </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary btn-md">INICIAR SESIÓN</button>
+                    </div><!-- End .form-footer -->
+                </form>
             </div>
         </div>
     </div>

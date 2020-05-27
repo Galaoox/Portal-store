@@ -20,23 +20,23 @@
 
                         <div class="col-lg-5 col-md-6">
                             <div class="product-single-details">
-                                <h1 class="product-title">Silver Porto Headset</h1>
+                                <h1 class="product-title">{{producto.nombre}}</h1>
                                 <div class="">
-                                    <label>Fecha adición 05/03/2020</label>
+                                    <label>Fecha adición {{producto.fecha}}</label>
                                 </div>
                                 <div class="">
-                                    <label>Vendedor 05/03/2020</label>
+                                    <label>Vendedor {{producto.vendedor}}</label>
                                 </div>
                                 <div class="price-box">
-                                    <span class="product-price">$101.00</span>
+                                    <span class="product-price">${{producto.precio}}</span>
                                 </div><!-- End .price-box -->
 
 
                                 <div class="product-action">
                                     <form class="form-inline" action="/carrito/add" method="get">
                                         <div class="product-single-qty">
-                                            <input class=" form-control" min="1" max="10" name="cantidad" type="number"
-                                                value="1" required>
+                                            <input class=" form-control" min="1" max="{{producto.cantidad}}"
+                                                name="cantidad" type="number" value="1" required>
                                         </div><!-- End .product-single-qty -->
                                         <input type="hidden" name="producto" value="1" type="text">
                                         <button class="paction add-cart" title="Añadir al carrito" type="submit">
@@ -50,22 +50,16 @@
                                     <li class="nav-item ">
                                         <a class="nav-link active" id="product-tab-desc" data-toggle="tab"
                                             href="#product-desc-content" role="tab" aria-controls="product-desc-content"
-                                            aria-selected="false">Description</a>
+                                            aria-selected="false">Descripción</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content ">
                                     <div class="tab-pane fade show active" id="product-desc-content" role="tabpanel"
                                         aria-labelledby="product-tab-desc">
                                         <div class="product-desc-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                                tempor
-                                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                                quis nostrud
-                                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                                Duis aute
-                                                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                                fugiat nulla
-                                                pariatur. Excepteur sint occaecat.</p>
+                                            <p>
+                                                {{producto.descripcion}}
+                                            </p>
                                         </div><!-- End .product-desc-content -->
                                     </div><!-- End .tab-pane -->
                                 </div><!-- End .tab-content -->

@@ -1,35 +1,23 @@
 import { Router, Response, Request } from 'express';
+import CarritoController from '../controllers/carrito.controller';
 
 const router = Router();
 
 
-router.get('/', (req: Request, res: Response) => {
-    // asi recibire los filtros
-    res.render('carrito/');
-});
+router.get('/', CarritoController.index);
 
 
 
-router.get('/add/', (req: Request, res: Response) => {
-
-    console.log(req.query.producto);
-    console.log(req.query.cantidad);
-    res.redirect('back');
-});
+router.get('/add/', CarritoController.add);
 
 
-router.get('/clear', (req: Request, res: Response) => {
+router.get('/clear', CarritoController.clear);
 
 
-    res.redirect('back');
-});
+router.get('/remove/:id', CarritoController.remove);
 
+router.get('/procesar/', CarritoController.procesar);
 
-router.get('/remove', (req: Request, res: Response) => {
-
-
-    res.redirect('back');
-});
 
 
 
