@@ -10,7 +10,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="" action="/productos/edit/{{ id }}" method="POST">
+            <form class="" action="/productos/edit/{{ id }}" method="POST" enctype="multipart/form-data">
 
                 <div class="modal-body row">
 
@@ -48,8 +48,11 @@
                         </select>
                     </div>
 
-                    <input type="hidden" name="id_usuario" value="1">
-                    <input type="hidden" name="id_estado" value="1">
+                    <div class="form-group col-12 col-md-12">
+                        <label for="cantidad" class=" form-control-label">Imagen</label>
+                        <input type="file" class="form-control" name="imagen">
+                    </div>
+
 
 
                 </div>

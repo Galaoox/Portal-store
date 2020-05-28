@@ -12,27 +12,29 @@
 
 
     <div class="container mt-2">
-        <nav class="toolbox horizontal-filter-personalizado filter-sorts ">
+        <form class="" action="/productos/" method="get">
 
-            <form class="form-inline" action="/productos/" method="get">
-                <input type="search" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar...">
-                <div class="toolbox-item ">
-                    <div class="select-custom">
-                        <select name="categoria" class="form-control">
-                            {{#each categorias}}
-                            <option value="{{ id }}">
-                                {{ nombre }}
-                            </option>
-                            {{/each}}
-                        </select>
-                    </div><!-- End .select-custom -->
-                </div><!-- End .toolbox-item -->
-                <button class="btn" type="submit"><i class="icon-magnifier"></i></button>
-            </form>
+            <nav class="toolbox">
+                <div class="toolbox-left">
+                    <div class="toolbox-item toolbox-sort">
+                        <div class="select-custom">
+                            <select name="categoria" class="form-control">
+                                {{#each categorias}}
+                                <option value="{{ id }}">
+                                    {{ nombre }}
+                                </option>
+                                {{/each}}
+                            </select>
+                        </div><!-- End .select-custom -->
+
+                    </div><!-- End .toolbox-item -->
+                </div><!-- End .toolbox-left -->
+                <button class="btn btn-sm" type="submit"><i class="icon-magnifier"></i></button>
+            </nav>
+
+        </form>
 
 
-
-        </nav>
         <div class="row">
             <div class="col-lg-12">
 
@@ -43,7 +45,7 @@
                         <div class="product-default">
                             <figure>
                                 <a href="/productos/detalle/{{id}}">
-                                    <img src="https://picsum.photos/id/{{id}}/900/500">
+                                    <img src="/fotos/{{img}}">
                                 </a>
                             </figure>
                             <div class="product-details">

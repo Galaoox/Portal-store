@@ -1,6 +1,6 @@
-<h2>Edit Account Information</h2>
+<h2>Editar información de la cuenta</h2>
 
-<form action="#">
+<form action="/auth/edit/{{ user.id }}" method="POST">
     <div class="row">
         <div class="form-group col-12 col-md-6">
             <label for="nombres" class=" form-control-label">Nombres <span class="required">*</span></label>
@@ -18,46 +18,15 @@
             <input type="email" name="email" id="email" value="{{user.email}}" placeholder="Correo electronico"
                 class="form-control form-wide mb-2" required>
         </div>
-        <div class="form-group col-12 col-md-6">
-            <label for="password" class=" form-control-label">Contraseña <span class="required">*</span></label>
-            <input type="password" name="password" id="password" placeholder="Contraseña"
-                class="form-control form-wide mb-2" required>
-        </div>
+
     </div><!-- End .row -->
 
 
-    <div class="mb-2"></div><!-- margin -->
 
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="change-pass-checkbox" value="1">
-        <label class="custom-control-label" for="change-pass-checkbox">Change Password</label>
-    </div><!-- End .custom-checkbox -->
-
-    <div id="account-chage-pass">
-        <h3 class="mb-2">Change Password</h3>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group required-field">
-                    <label for="acc-pass2">Password</label>
-                    <input type="password" class="form-control" id="acc-pass2" name="acc-pass2">
-                </div><!-- End .form-group -->
-            </div><!-- End .col-md-6 -->
-
-            <div class="col-md-6">
-                <div class="form-group required-field">
-                    <label for="acc-pass3">Confirm Password</label>
-                    <input type="password" class="form-control" id="acc-pass3" name="acc-pass3">
-                </div><!-- End .form-group -->
-            </div><!-- End .col-md-6 -->
-        </div><!-- End .row -->
-    </div><!-- End #account-chage-pass -->
-
-    <div class="required text-right">* Required Field</div>
     <div class="form-footer">
-        <a href="#"><i class="icon-angle-double-left"></i>Back</a>
 
         <div class="form-footer-right">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
     </div><!-- End .form-footer -->
 </form>

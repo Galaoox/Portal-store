@@ -5,15 +5,28 @@
         <span class="mobile-menu-close"><i class="icon-cancel"></i></span>
         <nav class="mobile-nav">
             <ul class="mobile-menu">
-                <li class="active"><a href="index.html">Inicio</a></li>
+                <li class="active"><a href="/">Inicio</a></li>
                 <li>
-                    <a href="#">Categorias</a>
-                    <ul>
-                        <li><a href="category.html">Full Width Banner</a></li>
-
-                    </ul>
+                    <a href="/productos">Productos</a>
                 </li>
-
+                <li>
+                    <a href="/carrito/">Carrito</a>
+                </li>
+                {{#if user.id }}
+                <li>
+                    <a href="/usuario">Mi cuenta</a>
+                </li>
+                <li>
+                    <a href="/auth/cerrarSesion">Cerrar sesión</a>
+                </li>
+                {{else}}
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#loginModal">INICIAR SESIÓN</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#registerModal">REGISTRARSE</a>
+                </li>
+                {{/if}}
             </ul>
         </nav><!-- End .mobile-nav -->
 

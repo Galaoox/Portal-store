@@ -1,49 +1,50 @@
+{{#each productos }}
 <!-- modal medium -->
-<div class="modal fade" id="nuevoProducto" tabindex="-1" role="dialog" aria-labelledby="nuevoProductoLabel"
-    aria-hidden="true">
+<div class="modal fade" id="editarProducto{{ id }}" tabindex="-1" role="dialog"
+    aria-labelledby="editarProducto{{ id }}Label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="nuevoProducto">Crear producto</h5>
+                <h5 class="modal-title" id="editarProducto{{ id }}">Editar producto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="" action="/productos/store" method="POST" enctype="multipart/form-data">
+            <form class="" action="/productos/edit/{{ id }}" method="POST" enctype="multipart/form-data">
 
-                <div class="modal-body row">
+                <div class="container-fluid row">
 
                     <div class="form-group col-12">
                         <label for="nombre" class=" form-control-label">Nombre</label>
-                        <input type="text" name="nombre" placeholder="nombre" class="form-control" autofocus required>
+                        <input type="text" name="nombre" value="{{ nombre }}" placeholder="nombre" class="form-control"
+                            autofocus required>
                     </div>
                     <div class="form-group col-12 col-md-12">
                         <label for="apellidos" class=" form-control-label">Descripción</label>
-                        <textarea name="descripcion" class="form-control" required placeholder="Descripción"></textarea>
+                        <textarea name="descripcion" class="form-control" required
+                            placeholder="Descripción">{{ descripcion }}</textarea>
                     </div>
 
                     <div class="form-group col-12 col-md-6">
                         <label for="precio" class=" form-control-label">Precio</label>
-                        <input type="number" name="precio" placeholder="Precio" min="1" max="999999999999999.99998"
-                            class="form-control" required>
+                        <input type="number" name="precio" value="{{ precio }}" placeholder="Precio" min="1"
+                            max="999999999999999.99998" class="form-control" required>
                     </div>
 
                     <div class="form-group col-12 col-md-6">
                         <label for="cantidad" class=" form-control-label">Cantidad</label>
-                        <input type="number" name="cantidad" placeholder="Cantidad" min="1" max="999999999999999.99998"
-                            class="form-control" required>
+                        <input type="number" name="cantidad" value="{{ cantidad }}" placeholder="Cantidad" min="1"
+                            max="999999999999999.99998" class="form-control" required>
                     </div>
-
-
 
                     <div class="form-group col-12 col-md-12">
                         <label for="cantidad" class=" form-control-label">Categorias</label>
                         <select name="id_categoria" class="form-control">
-                            {{#each categorias }}
-                            <option value="{{ id }}">
+                            {{#each ../categorias}}
+                            <option value="{{ id }}" {{isSelected ../id_categoria  id }}>
                                 {{ nombre }}
                             </option>
-                            {{/each }}
+                            {{/each}}
                         </select>
                     </div>
 
@@ -52,8 +53,6 @@
                         <input type="file" class="form-control" name="imagen">
                     </div>
 
-                    <input type="hidden" name="id_usuario" value="{{user.id}}">
-                    <input type="hidden" name="id_estado" value="1">
 
 
                 </div>
@@ -67,3 +66,5 @@
     </div>
 </div>
 <!-- end modal medium -->
+
+{{/each  }}

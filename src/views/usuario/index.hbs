@@ -9,15 +9,13 @@
                 {{/if}}
 
 
-                {{#if verPedidos}}
-
-                {{> usuario.pedidos }}
-
-                {{/if}}
 
                 {{#if verProductos}}
 
                 {{> usuario.productos }}
+                {{> productoNuevo.usuario }}
+                {{> productoEditar.usuario }}
+                {{> productoEliminar.usuario }}
 
                 {{/if}}
             </div><!-- End .col-lg-9 -->
@@ -28,7 +26,6 @@
 
                     <ul class="list">
                         <li><a href="/usuario/">Información de la cuenta</a></li>
-                        <li><a href="/usuario/pedidos">Mis pedidos</a></li>
                         <li><a href="/usuario/productos">Mi productos</a></li>
                     </ul>
                 </div><!-- End .widget -->

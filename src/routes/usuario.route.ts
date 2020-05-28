@@ -1,20 +1,15 @@
 import { Router, Response, Request } from 'express';
 
+import usuarioController from '../controllers/usuario.controller';
+
 const router = Router();
 
 
-router.get('/', function (req, res) {
-    res.render('usuario', { verFormulario: true });
-});
+router.get('/', usuarioController.index);
 
 
-router.get('/pedidos', function (req, res) {
-    res.render('usuario', { verPedidos: true });
-});
 
-router.get('/productos', function (req, res) {
-    res.render('usuario', { verProductos: true });
-});
+router.get('/productos', usuarioController.productos);
 
 
 export default router;

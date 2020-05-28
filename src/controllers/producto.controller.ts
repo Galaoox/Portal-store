@@ -1,16 +1,30 @@
 import { Response, Request } from 'express';
 import pool from '../database';
+import path from 'path';
 
 class ProductoController {
 
-    public async store(req: Request, res: Response) {
-        await pool.query('INSERT INTO productos SET fecha = NOW() , ?', [req.body]);
+    public async store(req: Request | any, res: Response) {
+        const imagen: any = req.files && req.files.imagen ? req.files.imagen : null;
+        const datos = req.body;
+        if (imagen) {
+            datos.img = 'producto_' + req.user?.id + imagen.name;
+            imagen.mv(path.join('src/public/fotos/', datos.img));
+        }
+
+        await pool.query('INSERT INTO productos SET fecha = NOW() , ?', [datos]);
         req.flash('success', 'Producto creado exitosamente');
         res.redirect('back');
     }
 
-    public async edit(req: Request, res: Response) {
+    public async edit(req: Request | any, res: Response) {
         const { id } = req.params;
+        const imagen: any = req.files && req.files.imagen ? req.files.imagen : null;
+        const datos = req.body;
+        if (imagen) {
+            datos.img = 'producto_' + req.user?.id + imagen.name;
+            imagen.mv(path.join('src/public/fotos/', datos.img));
+        }
         await pool.query('UPDATE productos set ? WHERE id = ?', [req.body, id]);
         req.flash('success', 'Producto editado exitosamente');
         res.redirect('back');
@@ -38,7 +52,8 @@ class ProductoController {
      */
     public async detalle(req: Request, res: Response) {
         const producto = await pool.query(`
-        select p.id, p.nombre, DATE_FORMAT(p.fecha , '%Y/%m/%d') as fecha , p.descripcion , p.precio , p.cantidad , p.img, cat.nombre as categoria
+        select p.id, p.nombre, DATE_FORMAT(p.fecha , '%Y/%m/%d') as fecha , p.descripcion , p.precio , p.cantidad , p.img, cat.nombre as categoria,
+        CONCAT(usu.nombres,' ',usu.apellidos) as vendedor
         from productos p 
         left join usuarios usu on usu.id = p.id_usuario 
         left join categorias cat on cat.id = p.id_categoria 
@@ -56,7 +71,7 @@ class ProductoController {
 
     public async index(req: Request, res: Response) {
         const productos = await pool.query(`
-        select p.id , p.nombre , p.precio, cat.nombre as categoria,
+        select p.id , p.nombre , p.precio, cat.nombre as categoria, p.img,
 		CONCAT(us.nombres , ' ', us.apellidos ) as vendedor
         from productos p
         left join categorias cat on cat.id = p.id_categoria 

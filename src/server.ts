@@ -5,6 +5,7 @@ import path from 'path';
 import flash from 'connect-flash';
 import passport from 'passport';
 import cors from 'cors';
+import fileUpload from 'express-fileupload';
 
 import keys from './keys';
 
@@ -63,6 +64,7 @@ class Server {
             store: new MySQLStore(keys.database)
         }));
         this.app.use(flash());
+        this.app.use(fileUpload());
         //this.app.use(morgan('dev'));
         this.app.use(cors());
         this.app.use(express.urlencoded({ extended: false }));

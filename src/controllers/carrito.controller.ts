@@ -4,8 +4,8 @@ import pool from '../database';
 class CarritoController {
 
     public async index(req: Request | any, res: Response) {
-        const carrito: any[] = req.session.carrito;
-        if (carrito.length == 0) {
+        const carrito: any = req.session.carrito;
+        if (!carrito || carrito.length == 0) {
             req.flash('message', 'No hay productos en el carrito')
             res.render('carrito/');
         } else {
@@ -14,7 +14,7 @@ class CarritoController {
             let responsePromises: any = [];
             let responsePromise;
             carrito.forEach(async (producto: any) => {
-                const responsePromise = pool.query(`select id,(${producto.cantidad}) as cantidad , nombre, (precio * ${Number(producto.cantidad)}) as total, precio from  productos where id = ${Number(producto.id)} and fecha_eliminado is null and id_estado = 1`);
+                const responsePromise = pool.query(`select id,img,(${producto.cantidad}) as cantidad , nombre, (precio * ${Number(producto.cantidad)}) as total, precio from  productos where id = ${Number(producto.id)} and fecha_eliminado is null and id_estado = 1`);
 
                 await responsePromises.push(responsePromise);
             });
@@ -72,23 +72,29 @@ class CarritoController {
 
                 const crearPedido = await pool.query(`insert into pedidos set fecha_creacion = NOW() , id_usuario = ${Number(req.user.id)}  `);
                 const idPedido = crearPedido.insertId;
-                let responsePromise;
-                let responsePromises: any = [];
-                carrito.forEach(async (producto: any) => {
-                    const datos = {
-                        id_pedido: idPedido,
-                        id_producto: producto.id,
-                        cantidad: producto.cantidad
+                try {
+                    let responsePromise;
+                    let responsePromises: any[] = [];
+                    carrito.forEach((producto: any) => {
+                        const datos = {
+                            id_pedido: idPedido,
+                            id_producto: producto.id,
+                            cantidad: producto.cantidad
 
-                    };
-                    responsePromise = pool.query(`insert into pedidos_has_productos set precio = (select precio from productos where id = ${producto.id}), ? `, [datos]);
-                    responsePromises.push(responsePromise);
-                });
+                        };
+                        responsePromise = pool.query(`insert into pedidos_has_productos set precio = (select precio from productos where id = ${producto.id}), ? `, [datos]);
+                        responsePromises.push(responsePromise);
+                    });
+                    await Promise.all(responsePromises).catch((error: any) => console.log(error));
+                    req.session.carrito = [];
+                    req.flash('success', 'Compra procesada');
+                    res.redirect('back')
+                } catch (error) {
+                    console.log(error);
+                    res.redirect('back');
+                }
 
-                await Promise.all(responsePromises);
-                req.session.carrito = [];
-                req.flash('success', 'Compra procesada');
-                res.redirect('back')
+
             } else {
                 req.flash('message', 'Inicie sesión para procesar su compra');
                 res.redirect('/carrito');
@@ -96,6 +102,7 @@ class CarritoController {
         }
         req.flash('message', 'Añada productos al carrito');
         res.redirect('/carrito');
+
     }
 
 

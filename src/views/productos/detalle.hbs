@@ -9,9 +9,7 @@
                                 <div class="product-slider-container product-item">
                                     <div class="product-single-carousel owl-carousel owl-theme">
                                         <div class="product-item">
-                                            <img class="product-single-image"
-                                                src="/assets/images/products/zoom/product-1.jpg"
-                                                data-zoom-image="assets/images/products/zoom/product-1-big.jpg">
+                                            <img class="product-single-image" src="/fotos/{{producto.img}}">
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +36,7 @@
                                             <input class=" form-control" min="1" max="{{producto.cantidad}}"
                                                 name="cantidad" type="number" value="1" required>
                                         </div><!-- End .product-single-qty -->
-                                        <input type="hidden" name="producto" value="1" type="text">
+                                        <input type="hidden" name="producto" value="{{producto.id}}" type="text">
                                         <button class="paction add-cart" title="Añadir al carrito" type="submit">
                                             <span>Añadir al carrito</span>
                                         </button>

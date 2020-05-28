@@ -1,6 +1,7 @@
 import { Response, Request } from 'express';
 import pool from '../database';
 
+
 class AdminController {
 
     /** Metodo encargado de dirigir al usuario a la vista inicial

@@ -1,0 +1,19 @@
+{{#each productos }}
+<!-- modal medium -->
+<div class="modal fade" id="eliminarProducto{{ id }}" tabindex="-1" role="dialog"
+    aria-labelledby="eliminarProducto{{ id }}" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <h1>¿Desea eliminar el registro?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <a href="/productos/delete/{{ id }}" type="button" class="btn btn-danger">Eliminar</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- end modal medium -->
+{{/each  }}
